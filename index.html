@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 2 * لعبة - Ms Walaa Al_housiny</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --primary: #4f46e5;
+    --secondary: #6366f1;
+    --success: #10b981;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --dark: #1e293b;
+    --light: #f8fafc;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.arabic-text {
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top, #e0e7ff, #a5b4fc);
+    color: var(--dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+    color: white;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    border-bottom: 4px solid #60a5fa;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-container {
+    width: 240px;
+    height: 240px;
+    border-radius: 20px;
+    overflow: hidden;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid #fff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+    transform: scale(1.03) rotate(2deg);
+}
+
+.logo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    background-color: white;
+    padding: 5px;
+}
+
+.titles h1 {
+    font-size: 2.8rem;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    letter-spacing: 1px;
+}
+
+.titles h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #bfdbfe;
+    letter-spacing: 0.5px;
+}
+
+.titles h3 {
+    font-size: 1.1rem;
+    font-weight: 400;
+    color: #e2e8f0;
+    margin-top: 8px;
+    background: rgba(0,0,0,0.2);
+    padding: 5px 15px;
+    border-radius: 20px;
+    display: inline-block;
+}
+
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.screen {
+    display: none;
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+    border: 1px solid #e2e8f0;
+}
+
+.screen.active {
+    display: block;
+}
+
+.screen h2 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.screen p {
+    font-size: 1.1rem;
+    color: #64748b;
+    margin-bottom: 30px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.game-card {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    border: 2px solid #e2e8f0;
+    border-bottom: 6px solid var(--primary);
+    border-radius: 20px;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+}
+
+.game-card:hover {
+    transform: translateY(-10px);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-bottom-color: #312e81;
+    color: white;
+    box-shadow: 0 15px 25px rgba(79, 70, 229, 0.3);
+}
+
+.game-card h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.game-card i {
+    font-size: 3.5rem;
+    color: var(--primary);
+    transition: color 0.3s;
+}
+
+.game-card:hover i {
+    color: white;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 3px dashed #cbd5e1;
+}
+
+.top-bar h3 {
+    font-size: 1.2rem;
+    color: #475569;
+}
+
+.btn-back {
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 0 #b91c1c;
+    transition: all 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.btn-back:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #b91c1c;
+}
+
+.btn-section {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    box-shadow: 0 4px 0 #312e81;
+    transition: all 0.1s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.btn-section:active {
+    transform: translateY(4px);
+    box-shadow: 0 0 0 #312e81;
+}
+
+.question-text {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    font-weight: 800;
+    color: var(--dark);
+    line-height: 1.4;
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.option-btn {
+    background: white;
+    border: 2px solid #e2e8f0;
+    color: var(--dark);
+    padding: 18px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 5px 0 #cbd5e1;
+    position: relative;
+}
+
+.option-btn:active {
+    transform: translateY(5px);
+    box-shadow: 0 0 0 #cbd5e1;
+}
+
+.option-btn:hover {
+    border-color: var(--primary);
+    background: #f1f5f9;
+}
+
+.option-btn.correct {
+    background: var(--success);
+    border-color: var(--success);
+    color: white;
+    box-shadow: 0 5px 0 #059669;
+}
+
+.option-btn.wrong {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: white;
+    box-shadow: 0 5px 0 #b91c1c;
+}
+
+.bubbles-container {
+    position: relative;
+    height: 450px;
+    background: linear-gradient(to bottom, #87ceeb, #e0f6ff);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 4px solid var(--primary);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.1);
+}
+
+.bubble {
+    position: absolute;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(200, 230, 255, 0.9));
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 800;
+    color: var(--primary);
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1), inset -5px -5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.1s;
+    text-align: center;
+    padding: 4px;
+    font-size: 0.85rem;
+    line-height: 1.1;
+    overflow: hidden;
+    word-break: break-word;
+    z-index: 2;
+}
+.bubble:active { transform: scale(0.9); }
+
+.targets-container {
+    position: relative;
+    height: 400px;
+    background: linear-gradient(135deg, #1e293b, #334155);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 4px solid var(--warning);
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+}
+
+.target {
+    position: absolute;
+    background: radial-gradient(circle, #fff, #fca5a5, #ef4444);
+    border: 4px solid white;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    cursor: crosshair;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    white-space: nowrap;
+    text-align: center;
+    z-index: 2;
+}
+
+.feedback-icon {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 10rem;
+    z-index: 1000;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+.feedback-icon.show { transform: translate(-50%, -50%) scale(1) rotate(10deg); }
+.feedback-icon.correct { color: var(--success); }
+.feedback-icon.wrong { color: var(--danger); }
+
+.results-list {
+    text-align: left;
+    margin-top: 25px;
+    max-height: 400px;
+    overflow-y: auto;
+    border: 2px solid #e2e8f0;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f8fafc;
+}
+
+.mistake-item {
+    background: white;
+    padding: 15px;
+    border-left: 5px solid var(--danger);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+
+.mistake-q { font-weight: 600; margin-bottom: 8px; font-size: 1.1rem; color: var(--dark); }
+.mistake-a { color: var(--success); font-weight: 800; }
+
+.main-footer {
+    background-color: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-top: auto;
+    border-top: 4px solid var(--primary);
+}
+
+@media (max-width: 768px) {
+    header { padding: 25px 20px; flex-direction: column; text-align: center; }
+    .header-content { flex-direction: column; gap: 15px; }
+    .logo-container { width: 160px; height: 160px; }
+    .titles h1 { font-size: 2.2rem; }
+    .titles h2 { font-size: 1.1rem; }
+    .option-btn { font-size: 1.1rem; }
+    .question-text { font-size: 1.4rem; }
+    .bubbles-container { height: 380px; }
+    .bubble { font-size: 0.68rem; padding: 2px; }
+    .targets-container { height: 320px; }
+    .target { padding: 8px 12px; font-size: 0.72rem; white-space: normal; max-width: 42%; text-align: center; line-height: 1.15; }
+}
+
+@media (max-width: 480px) {
+    .bubbles-container { height: 320px; }
+    .bubble { font-size: 0.6rem; }
+    .targets-container { height: 280px; }
+    .target { font-size: 0.65rem; padding: 6px 10px; max-width: 46%; }
+}
+</style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <svg viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ms Walaa Al_housiny logo" style="width:100%;height:100%;display:block;">
+                    <defs>
+                        <linearGradient id="lgBg" x1="0" y1="0" x2="1" y2="1">
+                            <stop offset="0" stop-color="#1e3a8a"/><stop offset="1" stop-color="#3b82f6"/>
+                        </linearGradient>
+                        <linearGradient id="lgGold" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0" stop-color="#fde047"/><stop offset="1" stop-color="#f59e0b"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="6" y="6" width="228" height="228" rx="34" fill="url(#lgBg)"/>
+                    <circle cx="120" cy="104" r="78" fill="#ffffff" opacity="0.10"/>
+                    <!-- stars -->
+                    <path d="M42 46 l5 11 12 1 -9 8 3 12 -11 -6 -11 6 3 -12 -9 -8 12 -1z" fill="url(#lgGold)"/>
+                    <path d="M196 40 l3.5 7.5 8 .8 -6 5.4 1.8 8 -7.3 -4.2 -7.3 4.2 1.8 -8 -6 -5.4 8 -.8z" fill="url(#lgGold)"/>
+                    <circle cx="200" cy="92" r="4" fill="#fde047"/>
+                    <circle cx="38" cy="100" r="3" fill="#fde047"/>
+                    <!-- open book -->
+                    <path d="M120 150 C100 136 72 134 50 140 L50 82 C72 76 100 78 120 92 Z" fill="#ffffff"/>
+                    <path d="M120 150 C140 136 168 134 190 140 L190 82 C168 76 140 78 120 92 Z" fill="#e0e7ff"/>
+                    <path d="M120 92 L120 150" stroke="#1e3a8a" stroke-width="3"/>
+                    <g fill="none" stroke="#93c5fd" stroke-width="3" stroke-linecap="round">
+                        <path d="M62 96 C78 93 94 95 108 102"/><path d="M62 110 C78 107 94 109 108 116"/><path d="M62 124 C78 121 94 123 108 130"/>
+                        <path d="M132 102 C146 95 162 93 178 96"/><path d="M132 116 C146 109 162 107 178 110"/><path d="M132 130 C146 123 162 121 178 124"/>
+                    </g>
+                    <!-- initials badge -->
+                    <circle cx="120" cy="66" r="30" fill="url(#lgGold)" stroke="#ffffff" stroke-width="4"/>
+                    <text x="120" y="77" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-weight="800" font-size="28" fill="#1e3a8a">WA</text>
+                    <!-- ribbon -->
+                    <path d="M28 166 H212 L202 184 L212 202 H28 L38 184 Z" fill="#ef4444"/>
+                    <text x="120" y="191" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-weight="800" font-size="19" fill="#ffffff" letter-spacing="0.5">Ms Walaa</text>
+                    <text x="120" y="222" text-anchor="middle" font-family="Poppins, Arial, sans-serif" font-weight="600" font-size="13" fill="#bfdbfe" letter-spacing="3">ENGLISH</text>
+                </svg>
+            </div>
+            <div class="titles">
+                <h1 class="arabic-text">درس * لعبة</h1>
+                <h2>Ms Walaa Al_housiny</h2>
+                <h3>Prim 3 - Unit 2: My Family and I | Grammar: my / his / her</h3>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div id="section-select" class="screen active">
+            <h2>Welcome! Choose what to practice:</h2>
+            <p>Unit 2: My Family and I</p>
+            <div class="menu-grid">
+                <div class="game-card" onclick="chooseSection('grammar')">
+                    <i class="fas fa-pen-fancy"></i>
+                    <h3>Grammar Games<br><span style="font-size:0.85rem;font-weight:400;">my / his / her</span></h3>
+                </div>
+                <div class="game-card" onclick="chooseSection('vocab')">
+                    <i class="fas fa-book-open"></i>
+                    <h3>Vocabulary Games<br><span style="font-size:0.85rem;font-weight:400;">Unit 2 Words</span></h3>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="main-menu" class="screen">
+            <button class="btn-section" onclick="switchScreen('section-select')"><i class="fas fa-arrow-left"></i> Back to Sections</button>
+            <h2 id="menu-title">Welcome! Choose a game to start:</h2>
+            <p id="menu-desc">Unit 2: My Family and I</p>
+            <div class="menu-grid">
+                <div class="game-card" onclick="startGame(1)">
+                    <i class="fas fa-list-ul"></i>
+                    <h3>Multiple Choice</h3>
+                </div>
+                <div class="game-card" onclick="startGame(2)">
+                    <i class="fas fa-soap"></i>
+                    <h3>Falling Bubbles</h3>
+                </div>
+                <div class="game-card" onclick="startGame(3)">
+                    <i class="fas fa-crosshairs"></i>
+                    <h3>Target Practice</h3>
+                </div>
+                <div class="game-card" onclick="startGame(4)">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>True or False</h3>
+                </div>
+                <div class="game-card" onclick="startGame(5)">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Advanced Challenge</h3>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Game Screen Container -->
+        <div id="game-screen" class="screen">
+            <div class="top-bar">
+                <button class="btn-back" onclick="returnToMenu()"><i class="fas fa-arrow-left"></i> Back</button>
+                <h3>Question <span id="q-number">1</span> / <span id="q-total">25</span></h3>
+                <h3>Score: <span id="score-display">0</span></h3>
+            </div>
+
+            <div id="question-container" class="question-text"></div>
+
+            <div id="options-container" class="options-grid"></div>
+            <div id="bubbles-area" class="bubbles-container" style="display: none;"></div>
+            <div id="targets-area" class="targets-container" style="display: none;"></div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="results-screen" class="screen">
+            <h2>Game Over!</h2>
+            <h3 style="margin: 20px 0; font-size: 1.8rem; color: var(--primary);">Final Score: <span id="final-score"></span> / <span id="final-total"></span></h3>
+            <div id="mistakes-container" class="results-list"></div>
+
+            <button class="btn-back" style="margin-top: 25px; padding: 15px 30px; background: var(--primary); box-shadow: 0 5px 0 #312e81; font-size: 1.2rem;" onclick="returnToMenu()">
+                <i class="fas fa-home"></i> Return to Main Menu
+            </button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        Ms Walaa Al_housiny
+    </footer>
+
+    <i class="fas fa-check-circle feedback-icon correct" id="icon-correct"></i>
+    <i class="fas fa-times-circle feedback-icon wrong" id="icon-wrong"></i>
+
+
+    <script>
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioCtx = new AudioContext();
+
+        function playSound(type) {
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            const oscillator = audioCtx.createOscillator();
+            const gainNode = audioCtx.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioCtx.destination);
+
+            if (type === 'correct') {
+                oscillator.type = 'sine';
+                oscillator.frequency.setValueAtTime(400, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(800, audioCtx.currentTime + 0.15);
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.15);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.15);
+            } else if (type === 'wrong') {
+                oscillator.type = 'sawtooth';
+                oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
+                oscillator.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + 0.3);
+            }
+        }
+
+        const HAS_GRAMMAR = true;
+        const GRAMMAR_BANK = [{"text": "Amira has a kite. ______ kite is flying high.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "I have a balloon. ______ balloon is yellow.", "ans": "My", "wrong": ["His", "Her", "Me"]}, {"text": "Nader has a book. ______ book is new.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "I have a pet. ______ pet is a rabbit.", "ans": "My", "wrong": ["His", "Her", "Me"]}, {"text": "This is ______ bag. I take it to school.", "ans": "my", "wrong": ["his", "her", "me"]}, {"text": "That is Adam. ______ book is blue.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "Sara loves drawing. ______ pictures are nice.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "Dina has a cat. ______ cat is cute.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "This is Laila. ______ dress is pink.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "______ name is Ahmed. He is my friend.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "I love ______ mother. She is a teacher.", "ans": "my", "wrong": ["his", "her", "me"]}, {"text": "Omar is a student. ______ T-shirt is blue.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "Mona is happy. ______ baby sister is cute.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "I am Ali. ______ uncle is a police officer.", "ans": "My", "wrong": ["His", "Her", "Me"]}, {"text": "Karim has a car. ______ car is black.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "Nour loves ______ family. They help her grow.", "ans": "her", "wrong": ["his", "my", "she"]}, {"text": "Hany is tall. ______ cousin is tall, too.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "I have a sister. ______ sister is kind.", "ans": "My", "wrong": ["His", "Her", "Me"]}, {"text": "Mariam is a doctor. ______ job is to help patients.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "Youssef is a pilot. ______ plane is big.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "Uncle Samy is a farmer. ______ farm is green.", "ans": "His", "wrong": ["Her", "My", "He"]}, {"text": "Aunt Hoda is a baker. ______ bread is delicious.", "ans": "Her", "wrong": ["His", "My", "She"]}, {"text": "I go to school with ______ brother.", "ans": "my", "wrong": ["his", "her", "me"]}, {"text": "Hassan loves ______ grandmother. She reads him a story.", "ans": "his", "wrong": ["her", "my", "he"]}, {"text": "Look at Salma! ______ cat is friendly.", "ans": "Her", "wrong": ["His", "My", "She"]}];
+        const VOCAB_BANK = [{"text": "My father's father is my ______.", "ans": "grandfather", "wrong": ["grandmother", "uncle", "cousin"]}, {"text": "My mother's mother is my ______.", "ans": "grandmother", "wrong": ["grandfather", "aunt", "sister"]}, {"text": "My father's brother is my ______.", "ans": "uncle", "wrong": ["aunt", "cousin", "grandfather"]}, {"text": "My mother's sister is my ______.", "ans": "aunt", "wrong": ["uncle", "cousin", "grandmother"]}, {"text": "My uncle's son is my ______.", "ans": "cousin", "wrong": ["brother", "uncle", "father"]}, {"text": "My mother and father have a son. He is my ______.", "ans": "brother", "wrong": ["sister", "cousin", "uncle"]}, {"text": "My mother and father have a daughter. She is my ______.", "ans": "sister", "wrong": ["brother", "aunt", "cousin"]}, {"text": "This is my ______. She is my mom.", "ans": "mother", "wrong": ["father", "brother", "uncle"]}, {"text": "This is my ______. He is my dad.", "ans": "father", "wrong": ["mother", "sister", "aunt"]}, {"text": "Look at the picture! This is my ______: my father, mother, brother and sister.", "ans": "family", "wrong": ["farmer", "teacher", "pilot"]}, {"text": "A ______ helps patients.", "ans": "doctor", "wrong": ["pilot", "farmer", "baker"]}, {"text": "A ______ works at a school.", "ans": "teacher", "wrong": ["pilot", "farmer", "baker"]}, {"text": "A ______ bakes delicious bread.", "ans": "baker", "wrong": ["doctor", "pilot", "teacher"]}, {"text": "A ______ flies a plane.", "ans": "pilot", "wrong": ["farmer", "baker", "teacher"]}, {"text": "A ______ grows fruit and vegetables on a farm.", "ans": "farmer", "wrong": ["doctor", "pilot", "teacher"]}, {"text": "My aunt works as a ______. She helps patients.", "ans": "doctor", "wrong": ["baker", "farmer", "pilot"]}, {"text": "My uncle bakes delicious bread. He is a ______.", "ans": "baker", "wrong": ["doctor", "pilot", "teacher"]}, {"text": "My mother is a ______. She travels around the world.", "ans": "pilot", "wrong": ["farmer", "baker", "teacher"]}, {"text": "My father is a ______. He works at a school.", "ans": "teacher", "wrong": ["baker", "pilot", "farmer"]}, {"text": "In the classroom, the ______ teaches us English.", "ans": "teacher", "wrong": ["doctor", "farmer", "pilot"]}, {"text": "The ______ makes bread and cakes every morning.", "ans": "baker", "wrong": ["doctor", "teacher", "pilot"]}, {"text": "On ______, we go to the garden all day, play, and eat salted fish.", "ans": "Sham El-Nessim", "wrong": ["Eid Al-Fitr", "Mother's Day", "6th of October"]}, {"text": "We give our mothers cards and gifts on ______.", "ans": "Mother's Day", "wrong": ["Sham El-Nessim", "Eid Al-Fitr", "6th of October"]}, {"text": "______ reminds us how brave the Egyptian soldiers are.", "ans": "6th of October", "wrong": ["Mother's Day", "Sham El-Nessim", "Eid Al-Fitr"]}, {"text": "We celebrate ______ after Ramadan.", "ans": "Eid Al-Fitr", "wrong": ["Mother's Day", "Sham El-Nessim", "6th of October"]}, {"text": "My father ______ me to school.", "ans": "takes", "wrong": ["cooks", "reads", "bakes"]}, {"text": "My mother ______ us food every day.", "ans": "cooks", "wrong": ["takes", "reads", "flies"]}, {"text": "My brother ______ me do my homework.", "ans": "helps", "wrong": ["cooks", "reads", "bakes"]}, {"text": "My grandmother ______ me a story.", "ans": "reads", "wrong": ["cooks", "takes", "bakes"]}, {"text": "My family helps me ______.", "ans": "grow", "wrong": ["cook", "bake", "fly"]}];
+        const GRAMMAR_TOPIC = "my / his / her";
+        const UNIT_NUM = 2;
+        const UNIT_NAME = "My Family and I";
+
+        let currentSection = HAS_GRAMMAR ? null : 'vocab';
+        let totalQuestions = 25;
+
+        const generateQuestions = (bank, count, type) => {
+            const shuffled = [...bank].sort(() => Math.random() - 0.5);
+            const selectedTemplates = shuffled.slice(0, count);
+
+            return selectedTemplates.map(t => {
+                if (type === 'TF') {
+                    let isTrue = Math.random() > 0.5;
+                    let displayedWord = isTrue ? t.ans : t.wrong[Math.floor(Math.random() * t.wrong.length)];
+                    let text = t.text.replace("______", `[ ${displayedWord} ]`).replace("_____", `[ ${displayedWord} ]`);
+                    return {
+                        q: text,
+                        options: ["True", "False"],
+                        answer: isTrue ? "True" : "False",
+                        originalAnswer: t.ans
+                    };
+                } else {
+                    let options = [t.ans, ...t.wrong].sort(() => Math.random() - 0.5);
+                    return {
+                        q: t.text.replace("______", "_____"),
+                        options: options,
+                        answer: t.ans
+                    };
+                }
+            });
+        };
+
+        let currentGameId = null;
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let mistakes = [];
+        let activeIntervals = [];
+        let currentQuestionsList = [];
+
+        const GAME_TITLES = {
+            1: "Multiple Choice",
+            2: "Falling Bubbles",
+            3: "Target Practice",
+            4: "True or False",
+            5: "Advanced Challenge"
+        };
+
+        const screens = document.querySelectorAll('.screen');
+        const qNumberSpan = document.getElementById('q-number');
+        const qTotalSpan = document.getElementById('q-total');
+        const finalTotalSpan = document.getElementById('final-total');
+        const scoreSpan = document.getElementById('score-display');
+        const qContainer = document.getElementById('question-container');
+        const optionsContainer = document.getElementById('options-container');
+        const bubblesArea = document.getElementById('bubbles-area');
+        const targetsArea = document.getElementById('targets-area');
+        const menuTitle = document.getElementById('menu-title');
+        const menuDesc = document.getElementById('menu-desc');
+
+        function switchScreen(screenId) {
+            screens.forEach(s => s.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function chooseSection(section) {
+            currentSection = section;
+            if (section === 'grammar') {
+                menuTitle.innerText = 'Grammar Games';
+                menuDesc.innerText = 'Unit ' + UNIT_NUM + ': ' + UNIT_NAME + ' — ' + GRAMMAR_TOPIC;
+            } else {
+                menuTitle.innerText = 'Vocabulary Games';
+                menuDesc.innerText = 'Unit ' + UNIT_NUM + ': ' + UNIT_NAME + ' — Words';
+            }
+            switchScreen('main-menu');
+        }
+
+        function returnToMenu() {
+            clearGameIntervals();
+            switchScreen('main-menu');
+        }
+
+        function clearGameIntervals() {
+            activeIntervals.forEach(clearInterval);
+            activeIntervals = [];
+            bubblesArea.innerHTML = '';
+            targetsArea.innerHTML = '';
+        }
+
+        function showFeedbackIcon(isCorrect) {
+            const icon = document.getElementById(isCorrect ? 'icon-correct' : 'icon-wrong');
+            icon.classList.add('show');
+            setTimeout(() => icon.classList.remove('show'), 600);
+        }
+
+        function startGame(gameId) {
+            audioCtx.resume();
+            currentGameId = gameId;
+            currentQuestionIndex = 0;
+            score = 0;
+            mistakes = [];
+            clearGameIntervals();
+
+            const bank = (currentSection === 'grammar') ? GRAMMAR_BANK : VOCAB_BANK;
+            totalQuestions = (currentSection === 'grammar') ? 25 : 30;
+            qTotalSpan.innerText = totalQuestions;
+            finalTotalSpan.innerText = totalQuestions;
+
+            const type = (gameId === 4) ? 'TF' : 'MCQ';
+            currentQuestionsList = generateQuestions(bank, totalQuestions, type);
+
+            scoreSpan.innerText = score;
+            switchScreen('game-screen');
+
+            optionsContainer.style.display = 'none';
+            bubblesArea.style.display = 'none';
+            targetsArea.style.display = 'none';
+
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            if (currentQuestionIndex >= totalQuestions) {
+                endGame();
+                return;
+            }
+
+            clearGameIntervals();
+            const qData = currentQuestionsList[currentQuestionIndex];
+            qNumberSpan.innerText = currentQuestionIndex + 1;
+            qContainer.innerText = qData.q;
+
+            if (currentGameId === 1 || currentGameId === 4 || currentGameId === 5) {
+                optionsContainer.style.display = 'grid';
+                optionsContainer.innerHTML = '';
+                qData.options.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'option-btn';
+                    btn.innerText = opt;
+                    if(currentGameId === 5) {
+                        btn.style.borderRadius = "30px";
+                        btn.style.borderWidth = "3px";
+                        btn.style.transform = "scale(0.98)";
+                    }
+                    btn.onclick = () => handleAnswer(opt === qData.answer, opt, qData);
+                    optionsContainer.appendChild(btn);
+                });
+            } else if (currentGameId === 2) {
+                bubblesArea.style.display = 'block';
+                startBubblesGame(qData);
+            } else if (currentGameId === 3) {
+                targetsArea.style.display = 'block';
+                startTargetsGame(qData);
+            }
+        }
+
+        function handleAnswer(isCorrect, selectedOpt, qData) {
+            clearGameIntervals();
+
+            if (isCorrect) {
+                playSound('correct');
+                showFeedbackIcon(true);
+                score++;
+                scoreSpan.innerText = score;
+            } else {
+                playSound('wrong');
+                showFeedbackIcon(false);
+                mistakes.push({
+                    q: qData.q,
+                    correct: qData.originalAnswer || qData.answer
+                });
+            }
+
+            if (currentGameId === 1 || currentGameId === 4 || currentGameId === 5) {
+                const buttons = optionsContainer.querySelectorAll('button');
+                buttons.forEach(btn => {
+                    btn.disabled = true;
+                    if (btn.innerText === qData.answer) btn.classList.add('correct');
+                    else if (btn.innerText === selectedOpt && !isCorrect) btn.classList.add('wrong');
+                });
+            }
+
+            setTimeout(() => {
+                currentQuestionIndex++;
+                loadQuestion();
+            }, 1000);
+        }
+
+        function startBubblesGame(qData) {
+            bubblesArea.innerHTML = '';
+            const width = bubblesArea.clientWidth;
+            const height = bubblesArea.clientHeight;
+            const isMobile = width < 480;
+
+            const segmentWidth = width / qData.options.length;
+            // Cap bubble size so it always fits inside its own column, with a sensible
+            // minimum so text stays readable, and a hard cap on small screens.
+            const maxAllowed = isMobile ? 78 : 110;
+            const baseSize = Math.max(46, Math.min(segmentWidth - 14, maxAllowed));
+
+            qData.options.forEach((opt, i) => {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.innerText = opt;
+                const size = baseSize - Math.random() * (baseSize * 0.12);
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+
+                let minLeft = i * segmentWidth + 4;
+                let maxLeft = (i + 1) * segmentWidth - size - 4;
+                if (maxLeft < minLeft) maxLeft = minLeft;
+
+                bubble.style.left = (minLeft + Math.random() * (maxLeft - minLeft)) + 'px';
+                bubble.style.top = '-150px';
+
+                bubble.onclick = () => handleAnswer(opt === qData.answer, opt, qData);
+                bubblesArea.appendChild(bubble);
+
+                let currentTop = -100 - (Math.random() * 150);
+                // Slower, gentler fall speed (roughly half the original pace).
+                let speed = 0.45 + Math.random() * 0.55;
+
+                const interval = setInterval(() => {
+                    currentTop += speed;
+                    bubble.style.top = currentTop + 'px';
+
+                    if (currentTop > height) {
+                        clearInterval(interval);
+                        if (opt === qData.answer) {
+                            handleAnswer(false, "Missed", qData);
+                        }
+                    }
+                }, 20);
+                activeIntervals.push(interval);
+            });
+        }
+
+        function startTargetsGame(qData) {
+            targetsArea.innerHTML = '';
+            const height = targetsArea.clientHeight;
+            const width = targetsArea.clientWidth;
+            const isMobile = width < 480;
+            const laneHeight = height / qData.options.length;
+            const targetH = isMobile ? 46 : 60;
+
+            qData.options.forEach((opt, i) => {
+                const target = document.createElement('div');
+                target.className = 'target';
+                target.innerText = opt;
+
+                // Each option gets its own horizontal lane so targets never stack
+                // on top of each other vertically.
+                const laneTop = (i * laneHeight) + Math.max(0, (laneHeight - targetH) / 2);
+                target.style.top = laneTop + 'px';
+                target.style.left = '-220px';
+
+                target.onclick = () => handleAnswer(opt === qData.answer, opt, qData);
+                targetsArea.appendChild(target);
+
+                let currentLeft = -180 - (Math.random() * 220);
+                // Slower, gentler travel speed (roughly half the original pace).
+                let speed = 0.6 + Math.random() * 0.7;
+
+                const interval = setInterval(() => {
+                    currentLeft += speed;
+                    target.style.left = currentLeft + 'px';
+
+                    if (currentLeft > width) {
+                        clearInterval(interval);
+                        if (opt === qData.answer) {
+                            handleAnswer(false, "Missed", qData);
+                        }
+                    }
+                }, 20);
+                activeIntervals.push(interval);
+            });
+        }
+
+        function endGame() {
+            clearGameIntervals();
+            switchScreen('results-screen');
+            document.getElementById('final-score').innerText = score;
+
+
+            const mistakesContainer = document.getElementById('mistakes-container');
+            mistakesContainer.innerHTML = '';
+
+            if (mistakes.length === 0) {
+                mistakesContainer.innerHTML = '<div style="color:var(--success); font-weight:800; font-size:1.5rem; text-align:center;">Excellent! No mistakes.</div>';
+            } else {
+                mistakes.forEach(m => {
+                    const div = document.createElement('div');
+                    div.className = 'mistake-item';
+                    div.innerHTML = `
+                        <div class="mistake-q">${m.q}</div>
+                        <div class="mistake-a"><i class="fas fa-check"></i> Correct Answer: ${m.correct}</div>
+                    `;
+                    mistakesContainer.appendChild(div);
+                });
+            }
+        }
+
+    </script>
+
+</body>
+</html>
